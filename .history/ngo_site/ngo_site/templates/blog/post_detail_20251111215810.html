@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}{{ post.title }} — Blog{% endblock %}
-{% block content %}
-<section class="max-w-3xl mx-auto px-4 py-12">
-  <h1 class="text-3xl font-bold mb-2">{{ post.title }}</h1>
-  <p class="text-sm text-gray-500 mb-6">{{ post.published_at|date:"M d, Y" }}</p>
-  <div class="prose max-w-none">{{ post.body|linebreaks }}</div>
-</section>
-{% endblock %}
