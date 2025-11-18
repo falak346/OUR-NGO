@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Events — NGO{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-100 to-blue-50 py-20 text-center">
+  <h1 class="text-4xl font-extrabold text-gray-900">Upcoming & Past Events</h1>
+  <p class="text-gray-600 mt-3 max-w-2xl mx-auto">
+    Stay updated with our community programs, workshops, and outreach initiatives.
+  </p>
+</section>
+
+<!-- Event List -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 gap-10">
+
+    {% for event in events %}
+    <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100 hover:shadow-xl transition duration-300">
+      <h2 class="text-2xl font-semibold text-gray-900">
+        <a href="{{ event.get_absolute_url }}" class="hover:text-blue-600 transition">
+          {{ event.title }}
+        </a>
+      </h2>
+
+      <p class="text-sm text-gray-500 mt-1">
+        {{ event.start_date }}
+        {% if event.end_date %} → {{ event.end_date }}{% endif %}
+        • {{ event.location }}
+      </p>
+
+      <p class="text-gray-700 mt-4 leading-relaxed">
+        {{ event.description|truncatechars:140 }}
+      </p>
+
+      <a href="{{ event.get_absolute_url }}" class="inline-block mt-4 text-blue-600 font-medium hover:underline">
+        Read More →
+      </a>
+    </div>
+    {% empty %}
+    <p class="text-gray-600 text-center col-span-2">No events yet.</p>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% endblock %}

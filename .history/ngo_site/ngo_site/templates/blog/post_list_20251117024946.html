@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Blog — NGO{% endblock %}
+{% block content %}
+
+<!-- Hero / Banner -->
+<section class="relative w-full h-[300px] bg-gray-100 flex items-center justify-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1350&q=80" 
+       class="absolute inset-0 w-full h-full object-cover brightness-75" alt="Blog Banner">
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Our Stories</h1>
+    <p class="text-lg text-gray-200 mt-3 max-w-2xl mx-auto">
+      Real stories, real impact — from our community and mission.
+    </p>
+  </div>
+</section>
+
+<!-- Blog Posts List -->
+<section class="max-w-6xl mx-auto px-6 py-16">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+    {% for post in posts %}
+    <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+      {% if post.image %}
+      <img src="{{ post.image.url }}" class="w-full h-48 object-cover" alt="{{ post.title }}">
+      {% else %}
+      <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1350&q=80"
+           class="w-full h-48 object-cover" alt="Blog Placeholder">
+      {% endif %}
+
+      <div class="p-6">
+        <h2 class="text-2xl font-bold text-gray-900">
+          <a href="{{ post.get_absolute_url }}" class="hover:text-blue-600 transition">
+            {{ post.title }}
+          </a>
+        </h2>
+        <p class="text-sm text-gray-500 mt-1">{{ post.published_at|date:"M d, Y" }}</p>
+        <p class="text-gray-700 mt-4">{{ post.body|truncatechars:150 }}</p>
+        <a href="{{ post.get_absolute_url }}" class="inline-block mt-4 text-blue-600 font-medium hover:underline">
+          Read More →
+        </a>
+      </div>
+    </article>
+    {% empty %}
+      <p class="text-center text-gray-600">No blog posts yet.</p>
+    {% endfor %}
+
+  </div>
+
+  <!-- Optional Pagination / Load More -->
+  <div class="mt-12 text-center">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">Previous</a>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">Next</a>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

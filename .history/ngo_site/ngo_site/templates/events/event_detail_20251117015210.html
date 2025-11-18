@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }} — Events{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="bg-[#FFF2D9] py-20 text-center">
+  <h1 class="text-4xl font-extrabold text-gray-900">{{ event.title }}</h1>
+
+  <p class="text-gray-700 mt-3 text-lg">
+    {{ event.start_date }}
+    {% if event.end_date %} → {{ event.end_date }}{% endif %}
+    • {{ event.location }}
+  </p>
+</section>
+
+<!-- Content Section -->
+<section class="max-w-4xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-10">
+
+  <!-- Side Info Column -->
+  <div class="md:col-span-1 space-y-6">
+    <div class="bg-white rounded-xl p-6 shadow border border-yellow-200">
+      <h3 class="text-xl font-semibold text-gray-900 mb-3">Event Details</h3>
+
+      <p class="text-gray-700"><b>Date:</b><br>{{ event.start_date }}{% if event.end_date %} → {{ event.end_date }}{% endif %}</p>
+
+      <p class="text-gray-700 mt-3"><b>Location:</b><br>{{ event.location }}</p>
+    </div>
+
+    <div class="bg-white rounded-xl p-6 shadow border border-yellow-200">
+      <h3 class="text-xl font-semibold text-gray-900 mb-3">Purpose</h3>
+      <p class="text-gray-700 text-sm">
+        This event is a part of our ongoing mission to uplift communities through education, health,
+        and sustainable development.
+      </p>
+    </div>
+  </div>
+
+  <!-- Description Column -->
+  <div class="md:col-span-2 bg-white p-8 rounded-2xl shadow-lg border border-yellow-200">
+    <div class="prose max-w-none text-gray-800 leading-relaxed">
+      {{ event.description|linebreaks }}
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

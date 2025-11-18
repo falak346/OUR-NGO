@@ -1,0 +1,7 @@
+creating backend for contact page.
+adding images 
+admin interface UI
+adding events and blogs
+UI of base.html page
+adding javascript
+and if time left adding a volunteer page and form

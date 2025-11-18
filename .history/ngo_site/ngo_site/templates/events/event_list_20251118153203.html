@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Events — NGO{% endblock %}
+{% block content %}
+
+<!-- HERO / BANNER -->
+<section class="relative w-full h-[420px] flex items-center justify-center overflow-hidden bg-cover bg-center"
+         style="background-image: url('/static/images/hero_events.jpg');">
+
+
+  <!-- Background Image -->
+  <img src="/static/images/event_banner.jpg"
+       class="absolute inset-0 w-full h-full object-cover" alt="Children Event">
+
+  <!-- DARK OVERLAY → THIS is the missing part -->
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+  <!-- Text -->
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-5xl font-extrabold text-white drop-shadow-lg">
+      Our Work Through Events
+    </h1>
+    <p class="text-lg text-gray-200 mt-3 max-w-2xl mx-auto">
+      We organize events that educate, empower, and uplift children & communities.
+    </p>
+  </div>
+
+</section>
+
+<!-- WHAT WE DO VIA EVENTS (Programs / Impact) -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">How Our Events Help</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="text-center p-6 bg-gray-50 rounded-2xl shadow">
+        <div class="text-5xl mb-4 text-teal-500">📚</div>
+        <h3 class="text-xl font-semibold text-gray-800">Education & Learning</h3>
+        <p class="mt-2 text-gray-600">
+          Workshops, awareness campaigns, and support programs that help children access education.
+        </p>
+      </div>
+      <div class="text-center p-6 bg-gray-50 rounded-2xl shadow">
+        <div class="text-5xl mb-4 text-teal-500">🩺</div>
+        <h3 class="text-xl font-semibold text-gray-800">Health & Well-being</h3>
+        <p class="mt-2 text-gray-600">
+          Organizing health camps, medical checkups, and safe spaces for children and families.
+        </p>
+      </div>
+      <div class="text-center p-6 bg-gray-50 rounded-2xl shadow">
+        <div class="text-5xl mb-4 text-teal-500">🤝</div>
+        <h3 class="text-xl font-semibold text-gray-800">Community & Rights</h3>
+        <p class="mt-2 text-gray-600">
+          Building awareness about children’s rights, protection, and participation in society.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS LIST / CARDS -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-10">Upcoming & Recent Events</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for event in events %}
+      <div class="bg-white rounded-2xl overflow-hidden shadow hover:shadow-lg transition">
+        <!-- Event image / placeholder -->
+        {% if event.image %}
+          <img src="{{ event.image.url }}" class="w-full h-48 object-cover">
+        {% else %}
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60"
+               class="w-full h-48 object-cover">
+        {% endif %}
+
+        <div class="p-6">
+          <h3 class="text-2xl font-semibold text-gray-900">{{ event.title }}</h3>
+          <p class="text-sm text-gray-500 mt-1">
+            {{ event.start_date }}{% if event.end_date %} → {{ event.end_date }}{% endif %}
+            • {{ event.location }}
+          </p>
+          <p class="text-gray-700 mt-3">{{ event.description|truncatechars:120 }}</p>
+          <a href="{{ event.get_absolute_url }}"
+             class="inline-block mt-4 px-4 py-2 bg-teal-500 text-white rounded-full font-medium hover:bg-teal-600 transition">
+            Learn More
+          </a>
+        </div>
+      </div>
+      {% empty %}
+        <p class="text-center text-gray-600 col-span-3">No events to show.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="py-20 bg-teal-50 text-center">
+  <div class="max-w-4xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-teal-800">Join Us in Making a Difference</h2>
+    <p class="text-gray-700 mt-4">
+      Your involvement—through participation, volunteering or donation—helps us host more meaningful events that create lasting impact.
+    </p>
+    <a href="/donate"
+       class="mt-6 inline-block bg-teal-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-teal-700 transition shadow">
+      Support Our Events
+    </a>
+  </div>
+</section>
+
+{% endblock %}

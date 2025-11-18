@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Blog — NGO{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="relative w-full h-[320px] flex items-center justify-center bg-cover bg-center"
+         style="background-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1350&q=80');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+    <div class="relative z-10 text-center px-6">
+        <h1 class="text-5xl font-extrabold text-white drop-shadow-lg">Our Blog</h1>
+        <p class="text-lg text-gray-200 mt-3 max-w-2xl mx-auto">
+            Stories, updates, and insights from the work we do every day.
+        </p>
+    </div>
+</section>
+
+<!-- BLOG LIST -->
+<section class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {% for post in posts %}
+        <article class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+
+            <!-- Image or fallback -->
+            {% if post.image %}
+                <img src="{{ post.image.url }}" class="h-48 w-full object-cover" alt="{{ post.title }}">
+            {% else %}
+                <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1350&q=80"
+                     class="h-48 w-full object-cover" alt="Blog">
+            {% endif %}
+
+            <div class="p-6">
+                <h2 class="text-2xl font-bold text-gray-900">
+                    <a href="{{ post.get_absolute_url }}" class="hover:text-yellow-600 transition">
+                        {{ post.title }}
+                    </a>
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    {{ post.published_at|date:"M d, Y" }}
+                </p>
+
+                <p class="text-gray-700 mt-4">
+                    {{ post.body|truncatechars:150 }}
+                </p>
+
+                <a href="{{ post.get_absolute_url }}"
+                   class="inline-block mt-4 text-yellow-600 font-semibold hover:underline">
+                    Read More →
+                </a>
+            </div>
+        </article>
+        {% empty %}
+            <p class="col-span-full text-center text-gray-600">No posts yet.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

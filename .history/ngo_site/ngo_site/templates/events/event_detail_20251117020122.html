@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }} — Event Details{% endblock %}
+{% block content %}
+
+<!-- 🔥 HERO -->
+<section class="relative h-[55vh] flex items-end">
+  <img src="https://source.unsplash.com/1200x800/?children,community,event"
+       class="absolute inset-0 w-full h-full object-cover opacity-70">
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+  <div class="relative p-10 text-white max-w-4xl">
+    <h1 class="text-5xl font-extrabold">{{ event.title }}</h1>
+    <p class="text-gray-200 mt-3">
+      {{ event.start_date }}
+      {% if event.end_date %} → {{ event.end_date }}{% endif %}
+      • {{ event.location }}
+    </p>
+  </div>
+</section>
+
+
+<!-- MAIN CONTENT -->
+<section class="py-20 bg-[#f8fafc]">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+
+    <!-- SIDEBAR -->
+    <div class="space-y-8">
+
+      <div class="bg-white p-6 rounded-xl shadow border border-[#99f6e4]">
+        <h3 class="text-xl font-semibold mb-3">Event Information</h3>
+        <p class="text-gray-700"><b>Date:</b> {{ event.start_date }}{% if event.end_date %} → {{ event.end_date }}{% endif %}</p>
+        <p class="text-gray-700 mt-2"><b>Location:</b> {{ event.location }}</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow border border-[#99f6e4]">
+        <h3 class="text-xl font-semibold mb-3">Why It Matters</h3>
+        <p class="text-gray-600">
+          This event helps empower communities through direct engagement, awareness,
+          and support programs aligned with our mission.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+    <div class="md:col-span-2">
+      <div class="bg-white p-10 rounded-2xl shadow-xl border border-[#99f6e4] prose max-w-none text-gray-800">
+        {{ event.description|linebreaks }}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-white text-center">
+  <h2 class="text-3xl font-bold text-[#0f172a]">Help Us Do More</h2>
+  <p class="text-gray-700 max-w-2xl mx-auto mt-3">
+    Support our mission and enable more community-driven events like this.
+  </p>
+  <a href="/donate"
+     class="mt-6 inline-block bg-[#0d9488] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#0a7a6f] transition shadow">
+    Donate Now
+  </a>
+</section>
+
+{% endblock %}

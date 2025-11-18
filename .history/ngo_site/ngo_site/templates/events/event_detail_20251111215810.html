@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ event.title }} — Events{% endblock %}
+{% block content %}
+<section class="max-w-3xl mx-auto px-4 py-12">
+  <h1 class="text-3xl font-bold mb-2">{{ event.title }}</h1>
+  <p class="text-sm text-gray-500 mb-6">{{ event.start_date }}{% if event.end_date %} → {{ event.end_date }}{% endif %} @ {{ event.location }}</p>
+  <div class="prose max-w-none">{{ event.description|linebreaks }}</div>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+/* Basic overrides */
+.prose p { margin-bottom: 1rem; }
+input, textarea, select { width: 100%; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.5rem 0.75rem; }
+.nav-item {
+  position: relative;
+  padding-bottom: 4px;
+  color: #374151; /* gray-700 */
+}
+
+.dark .nav-item {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  left: 50%;
+  bottom: -2px;
+  background: #22c55e; /* green-500 */
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+  width: 70%;
+}
+
+.mobile-nav-item {
+  padding: 10px 0;
+  color: #374151;
+  font-size: 1.1rem;
+}
+
+.dark .mobile-nav-item {
+  color: #e5e7eb;
+}

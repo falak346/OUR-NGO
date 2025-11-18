@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative w-full py-28 bg-gradient-to-br from-[#90E0EF] to-[#0096C7] text-white overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+    <h1 class="text-5xl font-extrabold">Support Our Mission</h1>
+    <p class="mt-4 text-lg max-w-2xl mx-auto">Your generous contribution helps us provide essentials, education, and support to communities in need. Every donation creates impact.</p>
+  </div>
+  <div class="absolute inset-0 opacity-20" style="background-image:url('/static/images/donation_bg.jpg'); background-size:cover; background-position:center;"></div>
+</section>
+
+<!-- GOALS SECTION -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-gray-900 text-center mb-12">Our Donation Goals</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="p-8 rounded-2xl shadow-md bg-[#E3F2FD]">
+        <h3 class="text-2xl font-bold text-[#0077B6] mb-2">Education Kits</h3>
+        <p class="text-gray-700">Help us provide books, bags, and learning material to children in need.</p>
+      </div>
+      <div class="p-8 rounded-2xl shadow-md bg-[#E3FDF5]">
+        <h3 class="text-2xl font-bold text-[#2D6A4F] mb-2">Healthcare Support</h3>
+        <p class="text-gray-700">Your donation funds medical checkups, medicines, and health camps.</p>
+      </div>
+      <div class="p-8 rounded-2xl shadow-md bg-[#D7F3FF]">
+        <h3 class="text-2xl font-bold text-[#023E8A] mb-2">Nutrition Program</h3>
+        <p class="text-gray-700">Support nutrition drives providing food to underprivileged communities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT SECTION -->
+<section class="py-20 bg-[#F0FAFF]">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-gray-900 mb-12">Your Impact So Far</h2>
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+      <div class="p-10 rounded-2xl shadow-md bg-white">
+        <h3 class="text-5xl font-extrabold text-[#0096C7]">15K+</h3>
+        <p class="text-gray-700 mt-2">Children Educated</p>
+      </div>
+      <div class="p-10 rounded-2xl shadow-md bg-white">
+        <h3 class="text-5xl font-extrabold text-[#2D6A4F]">10K+</h3>
+        <p class="text-gray-700 mt-2">Families Supported</p>
+      </div>
+      <div class="p-10 rounded-2xl shadow-md bg-white">
+        <h3 class="text-5xl font-extrabold text-[#0077B6]">200+</h3>
+        <p class="text-gray-700 mt-2">Communities Reached</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION OPTIONS SECTION -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-4xl font-bold text-gray-900 mb-12">Choose Your Donation Method</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="p-8 rounded-2xl shadow-md bg-[#E3F2FD]">
+        <h3 class="text-2xl font-bold text-[#0077B6] mb-3">UPI / QR</h3>
+        <img src="/static/images/qr.png" class="mx-auto w-40 h-40 rounded-xl shadow-md" alt="QR Code">
+        <p class="text-gray-700 mt-4">Scan the QR code to donate instantly.</p>
+      </div>
+
+      <div class="p-8 rounded-2xl shadow-md bg-[#E3FDF5]">
+        <h3 class="text-2xl font-bold text-[#2D6A4F] mb-3">Bank Transfer</h3>
+        <p class="text-gray-700">Account Number: {{ account_number }}</p>
+        <p class="text-gray-700">IFSC: {{ ifsc_code }}</p>
+        <p class="text-gray-700">Bank: {{ bank_name }}</p>
+      </div>
+
+      <div class="p-8 rounded-2xl shadow-md bg-[#D7F3FF]">
+        <h3 class="text-2xl font-bold text-[#023E8A] mb-3">Direct Support</h3>
+        <p class="text-gray-700">Contact us for partnership or large donations.</p>
+        <p class="text-gray-700">Email: {{ email }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATION FORM -->
+<section class="py-20 bg-[#F0FAFF]">
+  <div class="max-w-3xl mx-auto px-6 bg-white shadow-lg rounded-2xl p-10 border border-[#90E0EF]">
+    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Make a Donation</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {{ form.non_field_errors }}
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div>
+          {{ form.full_name.label_tag }}
+          {{ form.full_name }}
+        </div>
+        <div>
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 mt-6">
+        <div>
+          {{ form.amount.label_tag }}
+          {{ form.amount }}
+        </div>
+        <div>
+          {{ form.payment_method.label_tag }}
+          {{ form.payment_method }}
+        </div>
+      </div>
+
+      <div class="mt-6">
+        {{ form.transaction_id.label_tag }}
+        {{ form.transaction_id }}
+      </div>
+
+      <div class="mt-6">
+        {{ form.screenshot.label_tag }}
+        {{ form.screenshot }}
+      </div>
+
+      <button type="submit" class="w-full mt-8 bg-[#0096C7] hover:bg-[#0077B6] text-white font-semibold py-3 rounded-lg shadow-md transition">Submit Donation</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

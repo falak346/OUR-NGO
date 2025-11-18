@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}About — NGO{% endblock %}
+{% block content %}
+<section class="relative w-full bg-gradient-to-b from-[#FDFCDC] to-[#FED9B7] py-20">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">Who We Are</h1>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        We are a dedicated non-profit organization committed to uplifting vulnerable communities
+        through education, health initiatives, and sustainable development. Our work focuses on
+        long‑term impact and creating opportunities for growth.
+      </p>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        With community-driven programs and partnerships, we aim to build a future where every
+        individual has access to resources, dignity, and hope.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div class="rounded-2xl overflow-hidden shadow-xl">
+        <img src="/static/images/about_hero.jpg" alt="About NGO" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-[#FDFCDC]">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-10">Our Focus Areas</h2>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div class="p-6 rounded-2xl shadow-md bg-[#FDFCDC]">
+        <h3 class="text-xl font-semibold mb-3">Education</h3>
+        <p class="text-gray-700">Providing access to quality education and learning tools for underprivileged children.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl shadow-md bg-[#FDFCDC]">
+        <h3 class="text-xl font-semibold mb-3">Healthcare</h3>
+        <p class="text-gray-700">Supporting health camps, awareness programs, and essential medical aid.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl shadow-md bg-[#FDFCDC]">
+        <h3 class="text-xl font-semibold mb-3">Sustainability</h3>
+        <p class="text-gray-700">Working on environmental protection and sustainable livelihood initiatives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-20 bg-[#FED9B7]">
+  <div class="max-w-5xl mx-auto px-6 text-center space-y-6">
+    <h2 class="text-3xl font-bold text-gray-900">Our Mission</h2>
+    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+      Our mission is to bring transformative change by addressing systemic challenges and empowering
+      communities to lead their own development. We believe in compassion, transparency, and
+      accountability.
+    </p>
+  </div>
+</section>
+{% endblock %}

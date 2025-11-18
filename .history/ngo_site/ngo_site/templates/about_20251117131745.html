@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+{% block title %}About — NGO{% endblock %}
+
+{% block content %}
+{# --- KEEP ORIGINAL CONTENT START (unchanged) --- #}
+<section class="relative w-full bg-[#FFF8E2] py-20">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">Who We Are</h1>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        We are a dedicated non-profit organization committed to uplifting vulnerable communities
+        through education, health initiatives, and sustainable development. Our work focuses on
+        long-term impact and creating opportunities for growth.
+      </p>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        With community-driven programs and partnerships, we aim to build a future where every
+        individual has access to resources, dignity, and hope.
+      </p>
+...
+  </div>
+</section>
+
+<section class="py-20 bg-yellow-50">
+  <div class="max-w-5xl mx-auto px-6 text-center space-y-6">
+    <h2 class="text-3xl font-bold text-gray-900">Our Mission</h2>
+    <p class="text-gray-700 text-lg leading-relaxed max-w-3xl mx-auto">
+      Our mission is to bring transformative change by addressing systemic challenges and empowering
+      communities to lead their own development. We believe in compassion, transparency, and
+      accountability.
+    </p>
+  </div>
+</section>
+{# --- KEEP ORIGINAL CONTENT END (unchanged) --- #}
+
+{# --- Styles & CSS variables using your palette --- #}
+<style>
+  :root{
+    --primary-900: #003049;
+    --accent-700: #D62828;
+    --accent-500: #F77F00;
+    --accent-soft: #FCBF49;
+    --muted-50: #EAE2B7;
+  }
+
+  /* Carousel */
+  /* .ng-carousel { position: relative; overflow: hidden; }
+  .ng-slide { position: absolute; inset: 0; opacity: 0; transform: scale(1.02); transition: opacity .8s ease, transform .8s ease; }
+  .ng-slide.active { opacity: 1; transform: scale(1); position: relative; } */
+  /* Carousel */
+.ng-carousel { position: relative; overflow: hidden; }
+.ng-slide {   position: absolute; inset: 0; opacity: 0; transform: scale(1.02); transition: opacity .8s ease, transform .8s ease; z-index: 0;}
+.ng-slide.active { opacity: 1; transform: scale(1); z-index: 5;}
+
+
+  /* Slide indicators */
+  .ng-indicators { display:flex; gap:.5rem; justify-content:center; margin-top:1rem; }
+  .ng-indicators button { width:10px; height:10px; border-radius:9999px; background:rgba(0,0,0,0.2); border: none; }
+
+  /* Card overlay & hover effects */
+  .impact-card { position: relative; overflow: hidden; border-radius: .75rem; box-shadow: 0 8px 20px rgba(2,6,23,0.08); }
+  .impact-card img { width:100%; height: 320px; object-fit: cover; display:block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .impact-card:hover img { transform: scale(1.08); }
+
+  .impact-overlay {
+    position: absolute; inset: 0; display:flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.25rem; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.5) 100%);
+    color: white; transition: transform .35s ease, opacity .35s ease;
+    transform: translateY(12%); opacity: .98;
+  }
+
+  .impact-card:hover .impact-overlay { transform: translateY(0%); }
+
+  .impact-heading {
+    transform: translateY(18px); opacity: 0; transition: transform .35s cubic-bezier(.2,.9,.3,1), opacity .35s ease;
+    font-weight: 700; letter-spacing: .2px;
+  }
+  .impact-card:hover .impact-heading { transform: translateY(0); opacity: 1; }
+
+  .impact-text { font-size: .95rem; line-height: 1.4; max-height: 9rem; overflow: hidden; }
+
+  /* Small decorative accent */
+  .accent-pill { display:inline-block; padding:.25rem .6rem; background:var(--accent-soft); color:var(--primary-900); border-radius:9999px; font-weight:600; }
+
+  /* Responsive tweaks */
+  @media (min-width: 768px){
+    .impact-card img { height: 380px; }
+  }
+</style>
+
+{# --- New: Auto-sliding hero carousel (smaller, about-page specific) --- #}
+<section class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl font-bold" style="color:var(--primary-900)">A Closer Look — Moments & Impact</h2>
+      <div class="text-sm text-gray-600">Stories, snapshots and our evolving impact</div>
+    </div>
+
+    <div class="relative ng-carousel rounded-lg" id="aboutCarousel" aria-roledescription="carousel">
+
+      <!-- LEFT ARROW -->
+      <button id="aboutPrev"
+        class="absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-white shadow-md border p-3 rounded-full hover:bg-gray-100 transition">
+        ‹
+      </button>
+
+      <!-- RIGHT ARROW -->
+      <button id="aboutNext"
+        class="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-white shadow-md border p-3 rounded-full hover:bg-gray-100 transition">
+        ›
+      </button>
+
+      <!-- Slide 1 -->
+      <div class="ng-slide active" data-index="0" role="group" aria-roledescription="slide" aria-label="1 of 3">
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=1400&q=80&auto=format&fit=crop" alt="Community health drive">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Community Health Drive</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>We organized free health camps that reached remote villages — providing screenings and essential medicines.</p>
+                <p class="mt-2">Local volunteers were trained to ensure continuity of care beyond the event.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1400&q=80&auto=format&fit=crop" alt="Education program">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Education & Mentoring</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Scholarship programs and mentoring helped students complete secondary education.</p>
+                <p class="mt-2">Our training modules are co-created with teachers to ensure relevance.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1542413608-1f5e9f0d1d73?w=1400&q=80&auto=format&fit=crop" alt="Sustainable farming">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Sustainable Farming</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Adoption of water-conserving practices increased crop yields and food security.</p>
+                <p class="mt-2">Farmers now access micro-loans and market linkages.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="ng-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="2 of 3">
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1543128639-8d5b84a6c2d1?w=1400&q=80&auto=format&fit=crop" alt="Women empowerment">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Women Empowerment</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Skill-building workshops led to new livelihood opportunities for dozens of women.</p>
+                <p class="mt-2">Local cooperatives formed to sell products collectively.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=1400&q=80&auto=format&fit=crop" alt="Clean water">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Clean Water Access</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Installation of community filters reduced waterborne disease.</p>
+                <p class="mt-2">Communities now manage maintenance through village committees.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1520975911594-7b84a0f0f6b4?w=1400&q=80&auto=format&fit=crop" alt="Emergency relief">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Emergency Relief</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Quick-response teams provided relief after natural disasters and helped rehousing efforts.</p>
+                <p class="mt-2">Long-term recovery included livelihood restoration programs.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="ng-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="3 of 3">
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1520975911577-8d1a7fdbb2c7?w=1400&q=80&auto=format&fit=crop" alt="Youth leadership">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Youth Leadership</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Leadership camps inspired youth to begin community projects and civic participation.</p>
+                <p class="mt-2">Several youth-led initiatives continue to grow independently.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1517817748498-95b3b3f36f6a?w=1400&q=80&auto=format&fit=crop" alt="Sanitation">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Sanitation & Hygiene</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Community-driven sanitation drives improved school attendance and health outcomes.</p>
+                <p class="mt-2">Local champions now lead awareness campaigns.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="impact-card bg-white">
+            <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?w=1400&q=80&auto=format&fit=crop" alt="Green energy">
+            <div class="impact-overlay">
+              <div class="impact-heading text-xl">Green Energy Pilots</div>
+              <div class="impact-text mt-2 text-sm">
+                <p>Solar microgrids piloted for remote hamlets reduced costs and increased study time for children.</p>
+                <p class="mt-2">We continue to evaluate scaling options.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ng-indicators mt-6" id="aboutIndicators" aria-hidden="false">
+      <button aria-label="Go to slide 1" class="bg-gray-300" data-to="0"></button>
+      <button aria-label="Go to slide 2" data-to="1"></button>
+      <button aria-label="Go to slide 3" data-to="2"></button>
+    </div>
+  </div>
+</section>
+
+
+{# --- New: Our Impact So Far — stats + mini slideshow of achievements --- #}
+<section class="py-16 bg-[var(--muted-50)]">
+  <div class="max-w-6xl mx-auto px-6 space-y-8">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2">
+        <h3 class="text-2xl font-bold" style="color:var(--primary-900)">Our Impact So Far</h3>
+        <p class="text-gray-700 max-w-xl">A snapshot of measurable outcomes we've supported through programs and partnerships.</p>
+      </div>
+
+      <div class="flex gap-6">
+        <div class="text-center">
+          <div class="text-3xl font-extrabold" style="color:var(--accent-700)">1,240+</div>
+          <div class="text-sm text-gray-700">Beneficiaries reached</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-extrabold" style="color:var(--accent-500)">85%</div>
+          <div class="text-sm text-gray-700">Program completion</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-extrabold" style="color:var(--primary-900)">72</div>
+          <div class="text-sm text-gray-700">Community projects supported</div>
+        </div>
+      </div>
+    </div>
+
+    {# mini slideshow / testimonials style — rotates cards automatically #}
+    <div class="rounded-lg bg-white p-6 shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h4 class="font-semibold">Recent Achievements</h4>
+        <div class="text-sm text-gray-500">Auto-rotating highlights</div>
+      </div>
+
+      <div id="miniSlider" class="relative">
+        <div class="mini-slide active p-4">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            <img class="w-full md:w-48 h-32 object-cover rounded-md" src="https://images.unsplash.com/photo-1565120130297-2f0b2d8b1fbb?w=1200&q=80&auto=format&fit=crop" alt="School renovation">
+            <div>
+              <h5 class="font-semibold text-lg">School Renovation Completed</h5>
+              <p class="text-gray-700 text-sm mt-2">Renovation of two rural schools improved learning spaces for 300+ students.</p>
+              <p class="text-sm text-gray-600 mt-2">Local teachers were given classroom resources and training.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-slide p-4">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            <img class="w-full md:w-48 h-32 object-cover rounded-md" src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1200&q=80&auto=format&fit=crop" alt="Vocational training">
+            <div>
+              <h5 class="font-semibold text-lg">Vocational Training Pilot</h5>
+              <p class="text-gray-700 text-sm mt-2">Two cohorts completed training with job placements and micro-grants to start businesses.</p>
+              <p class="text-sm text-gray-600 mt-2">Success stories have inspired a scale-up plan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mini-slide p-4">
+          <div class="flex flex-col md:flex-row gap-4 items-start">
+            <img class="w-full md:w-48 h-32 object-cover rounded-md" src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?w=1200&q=80&auto=format&fit=crop" alt="Community bank">
+            <div>
+              <h5 class="font-semibold text-lg">Community Bank Launched</h5>
+              <p class="text-gray-700 text-sm mt-2">A community microfinance group now supports local entrepreneurs with low-interest loans.</p>
+              <p class="text-sm text-gray-600 mt-2">Repayment rates exceed expectations due to strong community governance.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 absolute right-4 top-1/2 transform -translate-y-1/2">
+          <button id="miniPrev" class="p-2 rounded-full border bg-white shadow-sm" aria-label="Previous">‹</button>
+          <button id="miniNext" class="p-2 rounded-full border bg-white shadow-sm" aria-label="Next">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# --- Small call-to-action for visitors to share moments (optional) --- #}
+<section class="py-10">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <div class="inline-flex items-center gap-3 mb-4">
+      <span class="accent-pill">Share</span>
+      <h4 class="text-xl font-semibold">Have a moment of impact to share?</h4>
+    </div>
+    <p class="text-gray-600 max-w-2xl mx-auto">If you were part of any program or benefited from our work, we'd love to hear your story — it helps us learn and grow.</p>
+    <div class="mt-6">
+      <a href="{% url 'contact' %}" class="inline-block px-6 py-2 rounded-md font-semibold shadow-sm" style="background:var(--primary-900); color: #fff;">Tell Your Story</a>
+    </div>
+  </div>
+</section>
+
+{# --- Scripts for carousels & interactive behaviour (vanilla JS) --- #}
+<script>
+  (function(){
+    /* ABOUT PAGE CAROUSEL */
+    const carousel = document.getElementById('aboutCarousel');
+    if (carousel) {
+      const slides = Array.from(carousel.querySelectorAll('.ng-slide'));
+      const indicators = document.getElementById('aboutIndicators').querySelectorAll('button');
+
+      /* NEW: arrow buttons */
+      const aboutPrev = document.getElementById("aboutPrev");
+      const aboutNext = document.getElementById("aboutNext");
+
+      let idx = 0;
+      let autoplay = true;
+      let interval = 6000; // 6s
+
+      function show(i){
+        slides.forEach(s=> s.classList.remove('active'));
+        indicators.forEach(b=> b.style.background = '');
+
+        const slide = slides[i];
+        if (slide) {
+          slide.classList.add('active');
+          indicators[i].style.background = 'var(--primary-900)';
+          idx = i;
+        }
+      }
+
+      indicators.forEach(btn=>{
+        btn.addEventListener('click', () => {
+          autoplay = false;
+          const to = Number(btn.getAttribute('data-to'));
+          show(to);
+        });
+      });
+
+      /* NEW: arrow listeners */
+      if (aboutPrev) {
+        aboutPrev.addEventListener('click', () => {
+          autoplay = false;
+          let prev = (idx - 1 + slides.length) % slides.length;
+          show(prev);
+        });
+      }
+
+      if (aboutNext) {
+        aboutNext.addEventListener('click', () => {
+          autoplay = false;
+          let next = (idx + 1) % slides.length;
+          show(next);
+        });
+      }
+
+      carousel.addEventListener('mouseenter', () => autoplay = false);
+      carousel.addEventListener('mouseleave', () => autoplay = true);
+
+      setInterval(() => {
+        if (!autoplay) return;
+        let next = (idx + 1) % slides.length;
+        show(next);
+      }, interval);
+    }
+    
+    /* MINI SLIDER */
+    const miniRoot = document.getElementById('miniSlider');
+    if (miniRoot) {
+      const miniSlides = Array.from(miniRoot.querySelectorAll('.mini-slide'));
+      const prevBtn = document.getElementById('miniPrev');
+      const nextBtn = document.getElementById('miniNext');
+      let mIdx = 0;
+      let mAuto = true;
+      let mInterval = 5000;
+
+      function miniShow(i){
+        miniSlides.forEach(s => s.classList.remove('active'));
+        const s = miniSlides[i];
+        if (s) s.classList.add('active');
+        mIdx = i;
+      }
+
+      prevBtn && prevBtn.addEventListener('click', () => { 
+        mAuto = false; 
+        miniShow((mIdx - 1 + miniSlides.length)%miniSlides.length); 
+      });
+
+      nextBtn && nextBtn.addEventListener('click', () => { 
+        mAuto = false; 
+        miniShow((mIdx + 1)%miniSlides.length); 
+      });
+
+      miniRoot.addEventListener('mouseenter', () => mAuto = false);
+      miniRoot.addEventListener('mouseleave', () => mAuto = true);
+
+      setInterval(() => { 
+        if (!mAuto) return; 
+        miniShow((mIdx + 1)%miniSlides.length); 
+      }, mInterval);
+
+      miniShow(0);
+    }
+  })();
+</script>
+
+
+{% endblock %}
