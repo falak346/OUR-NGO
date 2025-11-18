@@ -1,35 +1,34 @@
-# NGO Website (Django) — Starter Kit
+# NGO Website (Django)
 
-A clean starter for an NGO site built with Django. It includes:
-- Pages (Home, About, Contact)
-- Donations (simple form & admin)
-- Blog (posts & detail pages)
-- Events (list & detail pages)
-- Auth-ready (Django auth, templates include login/logout links)
-- Tailwind via CDN (swap with real pipeline later)
-- Env-ready settings
+This project is a Django-based website for an NGO, including:
+- Home page
+- About page
+- Events section
+- Blog
+- Contact form
+- Admin dashboard
 
-## Quickstart
+## 🚀 Features
+- Django 4+
+- App structure:
+  - `core` – main pages (Home, About)
+  - `events` – event listing
+  - `blog` – blog posts
+  - `ngo_site` – main Django project config
+- Templates included for all pages
+- SQLite database by default
+
+## 🛠 Installation
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+git clone https://github.com/USERNAME/REPO.git
+cd ngo_site_starter
+python -m venv env
+source env/bin/activate     # Mac/Linux
+env\Scripts\activate        # Windows
 pip install -r requirements.txt
-
-# Create .env from example and update values if needed
-cp .env.example .env
-
-# Run database migrations
 python manage.py migrate
-
-# Create a superuser for admin
-python manage.py createsuperuser
-
-# Start the server
 python manage.py runserver
-```
-
-Open http://127.0.0.1:8000/ to view the site, and http://127.0.0.1:8000/admin/ for the admin.
 
 ## Project Structure
 
@@ -71,36 +70,3 @@ ngo_site/
     ├── models.py, views.py, urls.py, admin.py
 ```
 
-## Roadmap
-
-**Phase 1 — MVP (this repo):**
-- ✅ Static pages (Home, About, Contact)
-- ✅ Donations model + form (no payment gateway yet)
-- ✅ Blog & Events CRUD via admin, public listing/detail pages
-- ✅ Basic styling (Tailwind CDN) + responsive layout
-- ✅ Environment-based settings
-
-**Phase 2 — Engagement:**
-- Add newsletter signups (Mailchimp/Brevo)
-- Add volunteer registration form + admin export
-- Add image gallery & media library
-- Blog categories/tags + search
-
-**Phase 3 — Donations v2:**
-- Integrate real payment gateway (Razorpay/Stripe/PayPal)
-- Record transactions & send receipts via email
-- Donor portal: view history, download receipts (auth)
-
-**Phase 4 — Impact & Transparency:**
-- Project pages: goals, budgets, progress
-- Impact metrics dashboard
-- Annual reports & downloads
-
-**Phase 5 — Production Hardening:**
-- Switch to Postgres
-- Caching + security headers
-- CI/CD + containerization
-- Tailwind build pipeline (Django Compressor/Whitenoise)
-- Media storage (S3/Cloud) + backups
-
-Happy building! 🙌
