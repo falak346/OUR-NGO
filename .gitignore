@@ -20,6 +20,7 @@ staticfiles/
 # --- VS Code History Folder (your project contains thousands of these) ---
 .history/
 
+
 # --- IDE / Editor ---
 .vscode/
 .idea/
